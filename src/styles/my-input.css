@@ -1,0 +1,25 @@
+input {
+  height: 2rem;
+  width: 15rem;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input--set {
+  display: block;
+  margin-top: 15px;
+}
+
+.input--error {
+  border: 2px solid red;
+}
+
+.input--error--message {
+  color: red;
+  word-wrap: break-word;
+}
+
+p.input--error--message {
+  max-width: 15rem;
+  margin: 0;
+}

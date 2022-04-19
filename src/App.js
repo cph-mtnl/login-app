@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./styles/App.css";
+import SignInContent from "./components/SignInContent";
+import SignUpModal from "./components/SignUpModal";
 
 function App() {
+  const [showSignUp, setShowSignUp] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="container">
+      <div className="main--card">
+        <SignInContent />
+        <h3
+          className="stolen-color alt-button"
+          onClick={() => setShowSignUp(true)}
         >
-          Learn React
-        </a>
-      </header>
+          Sign up
+        </h3>
+      </div>
+      {showSignUp && <SignUpModal close={() => setShowSignUp(false)} />}
     </div>
   );
 }
