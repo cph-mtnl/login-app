@@ -13,13 +13,3 @@ input {
 .input--error {
   border: 2px solid red;
 }
-
-.input--error--message {
-  color: red;
-  word-wrap: break-word;
-}
-
-p.input--error--message {
-  max-width: 15rem;
-  margin: 0;
-}

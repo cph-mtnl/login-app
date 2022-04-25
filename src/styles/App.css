@@ -17,13 +17,13 @@ body {
 }
 
 .main--card {
-  height: 450px;
   width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
   border-radius: 5px;
+  padding: 15px 0px;
 }
 
 .main--card > h1 {
@@ -43,29 +43,6 @@ h3 {
   color: #4772fa;
 }
 
-button {
+.mt-15 {
   margin-top: 15px;
-  height: 2rem;
-  width: 15.5rem;
-  background-color: #4772fa;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-button:active {
-  height: 1.85rem;
-  width: 15rem;
-  margin-top: calc(0.07rem + 15px);
-}
-
-.alt-button {
-  cursor: pointer;
-  transition: border 0.25s linear;
-  padding: 5px;
-  margin: 15px 0px;
-}
-
-.alt-button:hover {
-  border: 2px solid #4772fa;
 }

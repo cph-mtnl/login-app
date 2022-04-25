@@ -1,0 +1,19 @@
+.home {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  flex-direction: column;
+}
+
+.home nav {
+  height: 35px;
+  background-color: #4772fa;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.home h1 {
+  margin: 15px;
+}

@@ -1,0 +1,49 @@
+.my-button {
+  height: 2rem;
+  width: 15.5rem;
+  background-color: #4772fa;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.my-button:active {
+  height: 1.85rem;
+  width: 15rem;
+  margin-top: calc(0.07rem + 15px);
+}
+
+.my-disabled-button {
+  height: 2rem;
+  width: 15.5rem;
+  background-color: #626b88;
+  color: white;
+  border: none;
+  cursor: not-allowed;
+}
+
+.alt-button {
+  cursor: pointer;
+  transition: border 0.25s linear;
+  padding: 5px;
+  margin: 15px 0px;
+}
+
+.alt-button:hover {
+  border: 2px solid #4772fa;
+}
+
+.my-light-button {
+  height: 2rem;
+  width: 15.5rem;
+  color: white;
+  background-color: inherit;
+  border: 1px solid white;
+}
+
+.my-light-button:active {
+  height: 1.85rem;
+  width: 15rem;
+  margin-right: 0.25rem;
+  margin-top: 0.075rem;
+}

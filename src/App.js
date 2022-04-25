@@ -1,25 +1,24 @@
 import { useState } from "react";
 import "./styles/App.css";
-import SignInContent from "./components/SignInContent";
-import SignUpModal from "./components/SignUpModal";
+import { initializeApp } from "firebase/app";
+import Login from "./views/Login";
+import "./styles/button.css";
+import Home from "./views/Home";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAhXNtH86zW_P3bteYaLdWbTUgy7DQ-70c",
+  authDomain: "react-teaching.firebaseapp.com",
+  projectId: "react-teaching",
+  storageBucket: "react-teaching.appspot.com",
+  messagingSenderId: "756104532290",
+  appId: "1:756104532290:web:eb7703f19eb18f9e59b8db",
+};
 
 function App() {
-  const [showSignUp, setShowSignUp] = useState(false);
-
-  return (
-    <div className="container">
-      <div className="main--card">
-        <SignInContent />
-        <h3
-          className="stolen-color alt-button"
-          onClick={() => setShowSignUp(true)}
-        >
-          Sign up
-        </h3>
-      </div>
-      {showSignUp && <SignUpModal close={() => setShowSignUp(false)} />}
-    </div>
-  );
+  const [user, setUser] = useState(undefined);
+  initializeApp(firebaseConfig);
+  return <>{user ? <Home setUser={setUser} /> : <Login setUser={setUser} />}</>;
 }
 
 export default App;

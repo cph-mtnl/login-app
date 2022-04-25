@@ -1,39 +1,66 @@
 import { useState } from "react";
 import usePropState from "../hooks/usePropState";
 import "../styles/sign-up-modal.css";
-import validateSignUpInfo, {
+import {
   validateConfirmation,
   validateEmail,
   validatePassword,
 } from "../utils/validateSignUpInfo";
 import MyInput from "./MyInput";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import MyButton from "./MyButton";
+import useKeypress from "../hooks/useKeypress";
+import ErrorBox from "./ErrorBox";
+import translateFirebaseError from "../utils/translateFirebaseError";
 
-export default function SignUpModal({ close }) {
+export default function SignUpModal({ close, setUser }) {
   const rootId = "sign_up";
+  const auth = getAuth();
   const [errors, setErrors] = useState({});
+  const [firebaseError, setFirebaseError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [info, setPropInfo, setInfo] = usePropState({
     email: "",
     password: "",
     confirmation: "",
   });
 
+  useKeypress("Enter", handleSignUp);
+
   function idFor(subId) {
     return `${rootId}_${subId}`;
   }
 
-  function handleValidation() {
-    console.log("running validation");
-    const emailError = validateEmail(info.email);
-    const passwordError = validatePassword(info.password);
-    const confirmationError = validateConfirmation(
-      info.password,
-      info.confirmation
+  function handleSignUp() {
+    const isValid = isFormValid();
+    if (isValid) {
+      setIsLoading(true);
+      createUserWithEmailAndPassword(auth, info.email, info.password)
+        .then((userCredential) => {
+          setFirebaseError("");
+          setUser(userCredential.user);
+        })
+        .catch((error) => {
+          setFirebaseError(translateFirebaseError(error.code));
+        })
+        .finally(() => setIsLoading(false));
+    }
+  }
+
+  function isFormValid() {
+    const errorObj = {
+      emailError: validateEmail(info.email),
+      passwordError: validatePassword(info.password),
+      confirmationError: validateConfirmation(info.password, info.confirmation),
+    };
+
+    setErrors(errorObj);
+
+    const hasErrors = Object.values(errorObj).filter(
+      (item) => item !== undefined
     );
-    setErrors({
-      emailError,
-      passwordError,
-      confirmationError,
-    });
+
+    return hasErrors.length === 0;
   }
 
   return (
@@ -68,7 +95,13 @@ export default function SignUpModal({ close }) {
             setPropState={setPropInfo}
             errorMessage={errors.confirmationError}
           />
-          <button onClick={handleValidation}>Sign up</button>
+          {firebaseError && <ErrorBox errorMsg={firebaseError} />}
+          <MyButton
+            text={"Sign up"}
+            onClick={handleSignUp}
+            loading={isLoading}
+            className={"mt-15"}
+          />
           <h3 className="stolen-color alt-button" onClick={close}>
             Cancel
           </h3>

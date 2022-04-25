@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "../styles/my-input.css";
 
 export default function MyInput({
@@ -21,7 +20,7 @@ export default function MyInput({
         onChange={setPropState}
         className={errorMessage ? "input--error" : ""}
       />
-      {errorMessage && <p className="input--error--message">{errorMessage}</p>}
+      {errorMessage && <p className="error--message">{errorMessage}</p>}
     </div>
   );
 }

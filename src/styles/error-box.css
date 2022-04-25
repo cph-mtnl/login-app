@@ -1,0 +1,15 @@
+.error--message {
+  color: red;
+  word-wrap: break-word;
+}
+
+p.error--message {
+  max-width: 15rem;
+  margin: 0;
+}
+
+.error--box {
+  border: 2px solid red;
+  width: 14.5rem;
+  padding: 5px;
+}
