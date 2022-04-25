@@ -13,5 +13,5 @@ export default function useKeypress(target, callback) {
     return () => {
       window.removeEventListener("keypress", enterHandler);
     };
-  });
+  }, []);
 }
